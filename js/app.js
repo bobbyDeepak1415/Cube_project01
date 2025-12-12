@@ -1,4 +1,4 @@
-/* ---------------- Hamburger Menu ---------------- */
+// Hamburger
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu").querySelector("ul");
 
@@ -6,7 +6,7 @@ hamburgerBtn.addEventListener("click", () => {
   navMenu.classList.toggle("show");
 });
 
-/* ---------------- Product Gallery ---------------- */
+// Product Gallery 
 const mainImage = document.getElementById("mainImage");
 const thumbsContainer = document.getElementById("thumbsContainer");
 const thumbs = thumbsContainer.querySelectorAll("img");
@@ -17,7 +17,7 @@ const dotsContainer = document.getElementById("dotsContainer");
 const galleryImages = ["assets/img1.jpg", "assets/img2.jpg", "assets/img3.jpg"];
 let currentIndex = 0;
 
-// Create dots
+// Dots
 galleryImages.forEach((img, i) => {
   const dot = document.createElement("span");
   dot.dataset.index = i;
@@ -27,28 +27,28 @@ galleryImages.forEach((img, i) => {
 
 const dots = dotsContainer.querySelectorAll("span");
 
-// Update gallery function
+// Updating gallery 
 function updateGallery(index) {
   currentIndex = index;
   mainImage.src = galleryImages[currentIndex];
 
-  // Update active thumbnail
+  // Updating active thumbnail
   thumbs.forEach((t) => t.classList.remove("active"));
   thumbs[currentIndex].classList.add("active");
 
-  // Update dots
+  // Updating dots
   dots.forEach((d) => d.classList.remove("active"));
   dots[currentIndex].classList.add("active");
 }
 
-// Thumbnails click
+// Thumbnails clicking
 thumbs.forEach((t) => {
   t.addEventListener("click", (e) => {
     updateGallery(parseInt(e.target.dataset.index));
   });
 });
 
-// Arrows click
+// Arrows clicking
 prevBtn.addEventListener("click", () => {
   let index = currentIndex - 1;
   if (index < 0) index = galleryImages.length - 1;
@@ -61,14 +61,14 @@ nextBtn.addEventListener("click", () => {
   updateGallery(index);
 });
 
-// Dots click
+// Dots clicking
 dots.forEach((d) => {
   d.addEventListener("click", (e) => {
     updateGallery(parseInt(e.target.dataset.index));
   });
 });
 
-/* ---------------- Add to Cart / Radio Buttons ---------------- */
+//  Add to Cart
 const fragranceRadios = document.querySelectorAll("input[name='frag']");
 const purchaseRadios = document.querySelectorAll("input[name='purchase']");
 const addToCartBtn = document.getElementById("addToCart");
@@ -80,14 +80,13 @@ function updateAddToCart() {
   const frag = document.querySelector("input[name='frag']:checked");
   const purchase = document.querySelector("input[name='purchase']:checked");
 
-  // Expand/collapse subscription details
+  // Expand or collapse subscription details
   subscriptionSingle.style.display =
     purchase?.value === "single-sub" ? "block" : "none";
   subscriptionDouble.style.display =
     purchase?.value === "double-sub" ? "block" : "none";
 
   if (frag && purchase) {
-    // Create dummy link based on selection
     addToCartBtn.href = `https://dummycart.com/add?frag=${frag.value}&type=${purchase.value}`;
   }
 }
@@ -96,7 +95,7 @@ function updateAddToCart() {
 fragranceRadios.forEach((r) => r.addEventListener("change", updateAddToCart));
 purchaseRadios.forEach((r) => r.addEventListener("change", updateAddToCart));
 
-/* ---------------- Percentage Count-Up ---------------- */
+// Percentage Count-Up 
 const statsSection = document.getElementById("statsSection");
 const counts = statsSection.querySelectorAll(".count");
 let counted = false;
