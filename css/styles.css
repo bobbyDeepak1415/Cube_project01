@@ -1,4 +1,4 @@
-/* ----------------------- Reset ----------------------- */
+/* Reset  */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +11,7 @@ body {
   color: #333;
 }
 
-/* ----------------------- Hero Section ----------------------- */
+/* Hero Section  */
 .hero-section {
   width: 100%;
   overflow: hidden;
@@ -23,16 +23,14 @@ body {
   display: block;
 }
 
-/* ----------------------- Header ----------------------- */
-/* ----------------------- Header ----------------------- */
-/* ----------------------- Header ----------------------- */
+/* Header  */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;          /* Increased padding for Figma spacing */
-  background-color: #ffffff;    /* White background */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 20px 60px; 
+  background-color: #ffffff; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -40,9 +38,9 @@ body {
 }
 
 .header .logo {
-  font-size: 30px;             /* Match Figma logo size */
+  font-size: 30px; 
   font-weight: 700;
-  color: #1a1a1a;              /* Dark color */
+  color: #1a1a1a; 
   flex-shrink: 0;
 }
 
@@ -54,7 +52,7 @@ body {
 .header nav ul {
   display: flex;
   list-style: none;
-  gap: 40px;                   /* Spacing between menu items */
+  gap: 40px; 
   justify-content: flex-end;
   align-items: center;
 }
@@ -69,7 +67,7 @@ body {
   transition: color 0.3s ease;
 }
 
-/* Hover effect: underline animation like Figma */
+
 .header nav ul li a::after {
   content: "";
   position: absolute;
@@ -86,7 +84,7 @@ body {
 }
 
 .header nav ul li a:hover {
-  color: #1a1a1a; /* Optional: slightly darker on hover */
+  color: #1a1a1a; 
 }
 
 .hamburger {
@@ -104,10 +102,10 @@ body {
   transform: scale(1.1);
 }
 
-/* ----------------------- Responsive ----------------------- */
+/* responsiveness  */
 @media (max-width: 992px) {
   .header {
-    padding: 15px 30px;        /* Slightly smaller padding on tablet */
+    padding: 15px 30px; 
   }
 
   .header nav ul {
@@ -122,7 +120,7 @@ body {
     border-radius: 10px;
     border: 1px solid #eee;
     width: 220px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     z-index: 100;
     transition: all 0.3s ease;
   }
@@ -143,7 +141,7 @@ body {
   }
 }
 
-/* ----------------------- Product Section ----------------------- */
+/* product Section  */
 .product-section {
   display: flex;
   flex-wrap: wrap;
@@ -276,7 +274,7 @@ body {
   background: #555;
 }
 
-/* ----------------------- About Section ----------------------- */
+ /* About Section  */
 .about-section {
   padding: 50px 30px;
   display: flex;
@@ -313,7 +311,7 @@ body {
   line-height: 1.5;
 }
 
-/* ----------------------- Stats Section ----------------------- */
+ /* Stats  */
 .stats-section {
   display: flex;
   justify-content: center;
@@ -333,7 +331,7 @@ body {
   font-size: 16px;
 }
 
-/* ----------------------- Table Section ----------------------- */
+ /* Table Section  */
 .table-section {
   padding: 50px 30px;
   text-align: center;
@@ -353,7 +351,7 @@ body {
   text-align: left;
 }
 
-/* ----------------------- Responsive ----------------------- */
+/* Responsiveness  */
 @media (max-width: 992px) {
   .product-section {
     flex-direction: column;
