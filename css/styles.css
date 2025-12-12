@@ -25,21 +25,24 @@ body {
 
 /* ----------------------- Header ----------------------- */
 /* ----------------------- Header ----------------------- */
+/* ----------------------- Header ----------------------- */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 60px;          /* Increased padding for Figma spacing */
+  background-color: #ffffff;    /* White background */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .header .logo {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 30px;             /* Match Figma logo size */
+  font-weight: 700;
+  color: #1a1a1a;              /* Dark color */
   flex-shrink: 0;
 }
 
@@ -51,16 +54,39 @@ body {
 .header nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 40px;                   /* Spacing between menu items */
   justify-content: flex-end;
   align-items: center;
 }
 
 .header nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: #1a1a1a;
   font-weight: 500;
   font-size: 16px;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect: underline animation like Figma */
+.header nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #1a1a1a;
+  transition: width 0.3s ease;
+}
+
+.header nav ul li a:hover::after {
+  width: 100%;
+}
+
+.header nav ul li a:hover {
+  color: #1a1a1a; /* Optional: slightly darker on hover */
 }
 
 .hamburger {
@@ -70,24 +96,35 @@ body {
   border: none;
   cursor: pointer;
   margin-left: 20px;
+  color: #1a1a1a;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
 }
 
 /* ----------------------- Responsive ----------------------- */
 @media (max-width: 992px) {
+  .header {
+    padding: 15px 30px;        /* Slightly smaller padding on tablet */
+  }
+
   .header nav ul {
     display: none;
     flex-direction: column;
     gap: 15px;
     position: absolute;
     top: 65px;
-    right: 40px;
-    background: #fff;
+    right: 30px;
+    background: #ffffff;
     padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    width: 200px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #eee;
+    width: 220px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     z-index: 100;
+    transition: all 0.3s ease;
   }
 
   .header nav ul.show {
@@ -96,6 +133,13 @@ body {
 
   .hamburger {
     display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .header nav ul {
+    right: 20px;
+    width: 200px;
   }
 }
 
