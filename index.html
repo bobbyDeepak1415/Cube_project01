@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTG Perfumes</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">GTG</div>
+
+  <nav class="nav" id="navMenu">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Reviews</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <button class="hamburger" id="hamburgerBtn">☰</button>
+</header>
+
+<!-- Product Section -->
+<section class="product-section">
+
+  <!-- Left Gallery -->
+  <div class="gallery">
+
+    <!-- Main Image -->
+    <img id="mainImage" class="main-image" src="assets/img1.jpg" alt="perfume">
+
+    <!-- Arrows -->
+    <button class="arrow left" id="prevBtn">←</button>
+    <button class="arrow right" id="nextBtn">→</button>
+
+    <!-- Dots -->
+    <div class="dots" id="dotsContainer"></div>
+
+    <!-- Thumbnails -->
+    <div class="thumbs" id="thumbsContainer">
+      <img src="assets/img1-thumb.jpg" data-index="0">
+      <img src="assets/img2-thumb.jpg" data-index="1">
+      <img src="assets/img3-thumb.jpg" data-index="2">
+    </div>
+  </div>
+
+  <!-- Right Details -->
+  <div class="details">
+
+    <h1>GTG Perfumes</h1>
+
+    <!-- Fragrance Options -->
+    <div class="option-group">
+      <h3>Fragrances</h3>
+      <label><input type="radio" name="frag" value="rose"> Rose</label>
+      <label><input type="radio" name="frag" value="oud"> Oud</label>
+      <label><input type="radio" name="frag" value="musk"> Musk</label>
+    </div>
+
+    <!-- Purchase Options -->
+    <div class="option-group">
+      <h3>Purchase Type</h3>
+      <label><input type="radio" name="purchase" value="single"> One Time Purchase</label>
+      <label><input type="radio" name="purchase" value="single-sub"> Single Subscription</label>
+      <label><input type="radio" name="purchase" value="double-sub"> Double Subscription</label>
+    </div>
+
+    <!-- Expandable Subscription Sections -->
+    <div id="singleSubDetails" class="sub-details">
+      <h4>Single Subscription Details</h4>
+      <p>Delivered monthly with a 10% discount.</p>
+    </div>
+
+    <div id="doubleSubDetails" class="sub-details">
+      <h4>Double Subscription Details</h4>
+      <p>Delivered twice a month with a 20% discount.</p>
+    </div>
+
+    <!-- Add to Cart -->
+    <a id="addToCart" class="btn" href="#">Add to Cart</a>
+
+  </div>
+</section>
+
+<!-- Percentage Counter Section -->
+<section class="stats-section" id="statsSection">
+  <div class="stat">
+    <h2 class="count" data-target="84">0</h2>
+    <p>People loved the fragrance</p>
+  </div>
+
+  <div class="stat">
+    <h2 class="count" data-target="78">0</h2>
+    <p>Repeat customers</p>
+  </div>
+
+  <div class="stat">
+    <h2 class="count" data-target="92">0</h2>
+    <p>Recommended to friends</p>
+  </div>
+</section>
+
+<!-- Table Section -->
+<section class="table-section">
+  <h2>Specifications</h2>
+
+  <table>
+    <tr><th>Volume</th><td>100ml</td></tr>
+    <tr><th>Notes</th><td>Top, Middle, Base Notes</td></tr>
+    <tr><th>Longevity</th><td>8–10 hours</td></tr>
+    <tr><th>Origin</th><td>Made in India</td></tr>
+  </table>
+</section>
+
+<script src="js/app.js"></script>
+</body>
+</html>
