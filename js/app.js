@@ -1,18 +1,4 @@
-const hamburger = document.getElementById("hamburger");
-const mobileNav = document.getElementById("mobileNav");
-const thumbs = Array.from(document.querySelectorAll(".thumb"));
-const mainImage = document.getElementById("mainImage");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const dotsWrap = document.getElementById("dots");
-const addToCart = document.getElementById("addToCart");
-const fragranceRadios = document.querySelectorAll('input[name="fragrance"]');
-const purchaseRadios = document.querySelectorAll('input[name="purchase"]');
-const singleSub = document.getElementById("singleSub");
-const doubleSub = document.getElementById("doubleSub");
-const nums = document.querySelectorAll(".num");
-
-// Hamburger Menu Toggle// Hamburger Menu Toggle
+/* ---------------- Hamburger Menu ---------------- */
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu").querySelector("ul");
 
@@ -20,149 +6,126 @@ hamburgerBtn.addEventListener("click", () => {
   navMenu.classList.toggle("show");
 });
 
+/* ---------------- Product Gallery ---------------- */
+const mainImage = document.getElementById("mainImage");
+const thumbsContainer = document.getElementById("thumbsContainer");
+const thumbs = thumbsContainer.querySelectorAll("img");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const dotsContainer = document.getElementById("dotsContainer");
 
+const galleryImages = ["assets/img1.jpg", "assets/img2.jpg", "assets/img3.jpg"];
 let currentIndex = 0;
 
-// Hamburger toggle
-hamburger.addEventListener("click", () => {
-  const expanded = hamburger.getAttribute("aria-expanded") === "true";
-  hamburger.setAttribute("aria-expanded", String(!expanded));
-  if (mobileNav.hasAttribute("hidden")) {
-    mobileNav.removeAttribute("hidden");
-  } else {
-    mobileNav.setAttribute("hidden", "");
-  }
+// Create dots
+galleryImages.forEach((img, i) => {
+  const dot = document.createElement("span");
+  dot.dataset.index = i;
+  if (i === 0) dot.classList.add("active");
+  dotsContainer.appendChild(dot);
 });
 
-// Gallery setup
-function setActiveIndex(index) {
-  index = (index + thumbs.length) % thumbs.length;
-  thumbs.forEach((t, i) => {
-    t.classList.toggle("active", i === index);
-    t.setAttribute("aria-selected", String(i === index));
-  });
-  const src =
-    thumbs[index].dataset.src || thumbs[index].querySelector("img").src;
-  // lazy-load - if data-src provided
-  mainImage.src = src;
+const dots = dotsContainer.querySelectorAll("span");
+
+// Update gallery function
+function updateGallery(index) {
   currentIndex = index;
-  updateDots();
+  mainImage.src = galleryImages[currentIndex];
+
+  // Update active thumbnail
+  thumbs.forEach((t) => t.classList.remove("active"));
+  thumbs[currentIndex].classList.add("active");
+
+  // Update dots
+  dots.forEach((d) => d.classList.remove("active"));
+  dots[currentIndex].classList.add("active");
 }
-thumbs.forEach((t, i) => {
-  t.addEventListener("click", () => setActiveIndex(i));
-  t.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      setActiveIndex(i);
-    }
+
+// Thumbnails click
+thumbs.forEach((t) => {
+  t.addEventListener("click", (e) => {
+    updateGallery(parseInt(e.target.dataset.index));
   });
 });
 
-// Prev/Next
-if (prevBtn && nextBtn) {
-  prevBtn.addEventListener("click", () => setActiveIndex(currentIndex - 1));
-  nextBtn.addEventListener("click", () => setActiveIndex(currentIndex + 1));
-}
+// Arrows click
+prevBtn.addEventListener("click", () => {
+  let index = currentIndex - 1;
+  if (index < 0) index = galleryImages.length - 1;
+  updateGallery(index);
+});
 
-// Dots
-function updateDots() {
-  dotsWrap.innerHTML = "";
-  thumbs.forEach((_, i) => {
-    const btn = document.createElement("button");
-    btn.className = "dot";
-    btn.type = "button";
-    btn.title = "Go to image " + (i + 1);
-    btn.textContent = "•";
-    if (i === currentIndex) btn.setAttribute("aria-current", "true");
-    btn.addEventListener("click", () => setActiveIndex(i));
-    dotsWrap.appendChild(btn);
+nextBtn.addEventListener("click", () => {
+  let index = currentIndex + 1;
+  if (index >= galleryImages.length) index = 0;
+  updateGallery(index);
+});
+
+// Dots click
+dots.forEach((d) => {
+  d.addEventListener("click", (e) => {
+    updateGallery(parseInt(e.target.dataset.index));
   });
-}
-updateDots();
-setActiveIndex(0);
+});
 
-// Radio logic -> update add-to-cart
+/* ---------------- Add to Cart / Radio Buttons ---------------- */
+const fragranceRadios = document.querySelectorAll("input[name='frag']");
+const purchaseRadios = document.querySelectorAll("input[name='purchase']");
+const addToCartBtn = document.getElementById("addToCart");
+
+const subscriptionSingle = document.getElementById("singleSubDetails");
+const subscriptionDouble = document.getElementById("doubleSubDetails");
+
 function updateAddToCart() {
-  const frag = document.querySelector('input[name="fragrance"]:checked')?.value;
-  const purch = document.querySelector('input[name="purchase"]:checked')?.value;
-  if (!frag || !purch) return;
-  const url = `https://example.com/cart?product=gtg&frag=${encodeURIComponent(
-    frag
-  )}&purchase=${encodeURIComponent(purch)}`;
-  addToCart.href = url;
-}
+  const frag = document.querySelector("input[name='frag']:checked");
+  const purchase = document.querySelector("input[name='purchase']:checked");
 
-// Expandable subscription sections
-function handlePurchaseChange() {
-  document.querySelectorAll(".expandable").forEach((e) => {
-    e.classList.add("hidden");
-    e.setAttribute("aria-hidden", "true");
-  });
-  const sel = document.querySelector('input[name="purchase"]:checked');
-  if (sel && sel.dataset.expand) {
-    const id = sel.dataset.expand;
-    const el = document.getElementById(id);
-    if (el) {
-      el.classList.remove("hidden");
-      el.setAttribute("aria-hidden", "false");
-    }
+  // Expand/collapse subscription details
+  subscriptionSingle.style.display =
+    purchase?.value === "single-sub" ? "block" : "none";
+  subscriptionDouble.style.display =
+    purchase?.value === "double-sub" ? "block" : "none";
+
+  if (frag && purchase) {
+    // Create dummy link based on selection
+    addToCartBtn.href = `https://dummycart.com/add?frag=${frag.value}&type=${purchase.value}`;
   }
-  updateAddToCart();
 }
 
+// Event listeners
 fragranceRadios.forEach((r) => r.addEventListener("change", updateAddToCart));
-purchaseRadios.forEach((r) =>
-  r.addEventListener("change", handlePurchaseChange)
-);
-updateAddToCart();
-handlePurchaseChange();
+purchaseRadios.forEach((r) => r.addEventListener("change", updateAddToCart));
 
-// Count up when section in view
+/* ---------------- Percentage Count-Up ---------------- */
+const statsSection = document.getElementById("statsSection");
+const counts = statsSection.querySelectorAll(".count");
 let counted = false;
-function easeOutQuad(t) {
-  return t * (2 - t);
+
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top <= window.innerHeight && rect.bottom >= 0;
 }
 
 function countUp() {
-  if (counted) return;
-  const section = document.getElementById("percentSection");
-  if (!section) return;
-  const rect = section.getBoundingClientRect();
-  if (rect.top < window.innerHeight && rect.bottom > 0) {
-    counted = true;
-    nums.forEach((el) => {
-      const target = Number(el.dataset.target) || 0;
-      const duration = 1200;
-      const start = performance.now();
-      function step(now) {
-        const time = Math.min(1, (now - start) / duration);
-        const eased = easeOutQuad(time);
-        const current = Math.floor(eased * target);
-        el.textContent = current + "%";
-        if (time < 1) requestAnimationFrame(step);
-        else el.textContent = target + "%";
-      }
-      requestAnimationFrame(step);
+  if (!counted && isInViewport(statsSection)) {
+    counts.forEach((c) => {
+      const target = parseInt(c.dataset.target);
+      let current = 0;
+      const increment = Math.ceil(target / 100);
+
+      const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          c.textContent = target + "%";
+          clearInterval(counter);
+        } else {
+          c.textContent = current + "%";
+        }
+      }, 20);
     });
+    counted = true;
   }
 }
+
 window.addEventListener("scroll", countUp);
-window.addEventListener("resize", countUp);
 window.addEventListener("load", countUp);
-
-// Accessibility: allow keyboard navigation for dots (delegated)
-dotsWrap.addEventListener("keydown", (e) => {
-  const focusable = Array.from(dotsWrap.querySelectorAll("button"));
-  const idx = focusable.indexOf(document.activeElement);
-  if (e.key === "ArrowRight") {
-    focusable[(idx + 1) % focusable.length].focus();
-  } else if (e.key === "ArrowLeft") {
-    focusable[(idx - 1 + focusable.length) % focusable.length].focus();
-  }
-});
-
-// Lazy loading placeholder: ensure mainImage has src on load if missing
-if (!mainImage.src || mainImage.src.endsWith("null")) {
-  const first = thumbs[0];
-  if (first && first.dataset.src) mainImage.src = first.dataset.src;
-}
