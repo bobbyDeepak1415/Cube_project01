@@ -28,8 +28,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px; 
-  background-color: #ffffff; 
+  padding: 20px 60px;
+  background-color: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
@@ -38,9 +38,9 @@ body {
 }
 
 .header .logo {
-  font-size: 30px; 
+  font-size: 30px;
   font-weight: 700;
-  color: #1a1a1a; 
+  color: #1a1a1a;
   flex-shrink: 0;
 }
 
@@ -52,7 +52,7 @@ body {
 .header nav ul {
   display: flex;
   list-style: none;
-  gap: 40px; 
+  gap: 40px;
   justify-content: flex-end;
   align-items: center;
 }
@@ -66,7 +66,6 @@ body {
   position: relative;
   transition: color 0.3s ease;
 }
-
 
 .header nav ul li a::after {
   content: "";
@@ -84,7 +83,7 @@ body {
 }
 
 .header nav ul li a:hover {
-  color: #1a1a1a; 
+  color: #1a1a1a;
 }
 
 .hamburger {
@@ -105,7 +104,7 @@ body {
 /* responsiveness  */
 @media (max-width: 992px) {
   .header {
-    padding: 15px 30px; 
+    padding: 15px 30px;
   }
 
   .header nav ul {
@@ -274,7 +273,7 @@ body {
   background: #555;
 }
 
- /* About Section  */
+/* About Section  */
 .about-section {
   padding: 50px 30px;
   display: flex;
@@ -311,7 +310,7 @@ body {
   line-height: 1.5;
 }
 
- /* Stats  */
+/* Stats  */
 .stats-section {
   display: flex;
   justify-content: center;
@@ -331,7 +330,7 @@ body {
   font-size: 16px;
 }
 
- /* Table Section  */
+/* Table Section  */
 .table-section {
   padding: 50px 30px;
   text-align: center;
