@@ -12,6 +12,14 @@ const singleSub = document.getElementById("singleSub");
 const doubleSub = document.getElementById("doubleSub");
 const nums = document.querySelectorAll(".num");
 
+// Hamburger Menu Toggle
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const navMenu = document.getElementById("navMenu").querySelector("ul");
+
+hamburgerBtn.addEventListener("click", () => {
+  navMenu.classList.toggle("show");
+});
+
 let currentIndex = 0;
 
 // Hamburger toggle

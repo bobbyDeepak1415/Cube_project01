@@ -3,7 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 body {
@@ -24,33 +24,43 @@ body {
 }
 
 /* ----------------------- Header ----------------------- */
+/* ----------------------- Header ----------------------- */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 15px 40px;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .header .logo {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
+  flex-shrink: 0;
+}
+
+.header nav {
+  flex: 1;
+  text-align: right;
 }
 
 .header nav ul {
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 30px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .header nav ul li a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
+  font-size: 16px;
 }
 
 .hamburger {
@@ -59,6 +69,34 @@ body {
   background: none;
   border: none;
   cursor: pointer;
+  margin-left: 20px;
+}
+
+/* ----------------------- Responsive ----------------------- */
+@media (max-width: 992px) {
+  .header nav ul {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    top: 65px;
+    right: 40px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+
+  .header nav ul.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
 
 /* ----------------------- Product Section ----------------------- */
@@ -88,7 +126,7 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   border: none;
   font-size: 24px;
   cursor: pointer;
@@ -96,8 +134,12 @@ body {
   border-radius: 50%;
 }
 
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
+.arrow.left {
+  left: 10px;
+}
+.arrow.right {
+  right: 10px;
+}
 
 .dots {
   display: flex;
@@ -135,7 +177,8 @@ body {
   border-radius: 5px;
 }
 
-.thumbs img:hover, .thumbs img.active {
+.thumbs img:hover,
+.thumbs img.active {
   border-color: #333;
 }
 
@@ -259,7 +302,8 @@ body {
   border-collapse: collapse;
 }
 
-.table-section th, .table-section td {
+.table-section th,
+.table-section td {
   padding: 12px 15px;
   border: 1px solid #ddd;
   text-align: left;
@@ -271,7 +315,8 @@ body {
     flex-direction: column;
     align-items: center;
   }
-  .details, .gallery {
+  .details,
+  .gallery {
     max-width: 100%;
   }
   .about-content {
